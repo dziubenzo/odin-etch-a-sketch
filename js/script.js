@@ -52,7 +52,7 @@ function paintSquare(event) {
 function changeGridSize() {
   // Validate user input
   if (
-    gridSizeField.value < 0 ||
+    gridSizeField.value < 1 ||
     gridSizeField.value > 100 ||
     gridSizeField.value === ''
   ) {
