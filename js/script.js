@@ -5,6 +5,9 @@ const sketchBox = document.querySelector('.sketch-box');
 const SKETCH_BOX_HEIGHT = sketchBox.computedStyleMap().get('height').value;
 const SKETCH_BOX_WIDTH = sketchBox.computedStyleMap().get('width').value;
 
+createGrid(gridSize);
+sketchBox.addEventListener('mouseover', paintSquare);
+
 // Create grid of a given size
 function createGrid(size) {
   let divsToCreate = size ** 2;
@@ -14,12 +17,19 @@ function createGrid(size) {
 
   for (let i = 0; i < divsToCreate; i++) {
     let square = document.createElement('div');
-    square.classList.add('grid-square');
-    square.textContent = 'x';
+    square.classList.add('grid-square', 'border');
     square.style.height = `${squareHeight}px`;
     square.style.width = `${squareWidth}px`;
     sketchBox.appendChild(square);
   }
 }
 
-createGrid(gridSize);
+// Paint hovered-over square
+function paintSquare(event) {
+  // Skip the sketch box itself
+  if (event.target === sketchBox) {
+    return;
+  } else {
+    event.target.style.backgroundColor = 'black';
+  }
+}
