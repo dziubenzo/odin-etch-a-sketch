@@ -25,10 +25,13 @@ body {
   height: 600px;
   border: 2px solid blue;
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .grid-square {
-  border: 1px solid black;
-  width: 50px;
+  /* border: 1px solid black; */
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
