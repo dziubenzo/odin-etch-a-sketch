@@ -1,4 +1,3 @@
-const DEFAULT_GRID_SIZE = 16;
 let gridSize = 16;
 const sketchBox = document.querySelector('.sketch-box');
 
@@ -11,9 +10,12 @@ gridSizeField.value = gridSize;
 
 const gridSizeButton = document.querySelector('.grid-size-button');
 
+const toggleBordersButton = document.querySelector('.toggle-borders-button');
+
 createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquare);
 gridSizeButton.addEventListener('click', changeGridSize);
+toggleBordersButton.addEventListener('click', toggleBorders);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -41,19 +43,20 @@ function paintSquare(event) {
   }
 }
 
-// Change grid size
+// Change grid size if the respective button is clicked
 function changeGridSize() {
-  // Validate input
+  // Validate user input
   if (
     gridSizeField.value < 0 ||
     gridSizeField.value > 100 ||
     gridSizeField.value === ''
   ) {
-    gridSizeField.value = DEFAULT_GRID_SIZE;
+    gridSizeField.value = gridSize;
     return;
   } else {
     clearGrid();
-    createGrid(gridSizeField.value);
+    gridSize = gridSizeField.value;
+    createGrid(gridSize);
   }
 }
 
@@ -62,5 +65,13 @@ function clearGrid() {
   let gridSquares = document.querySelectorAll('.grid-square');
   for (square of gridSquares) {
     square.remove();
+  }
+}
+
+// Toggle borders on and off with a button
+function toggleBorders() {
+  let gridSquares = document.querySelectorAll('.grid-square');
+  for (square of gridSquares) {
+    square.classList.toggle('border');
   }
 }
