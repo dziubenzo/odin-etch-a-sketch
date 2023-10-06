@@ -12,10 +12,13 @@ const gridSizeButton = document.querySelector('.grid-size-button');
 
 const toggleBordersButton = document.querySelector('.toggle-borders-button');
 
+const clearCanvasButton = document.querySelector('.clear-canvas-button');
+
 createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquare);
 gridSizeButton.addEventListener('click', changeGridSize);
 toggleBordersButton.addEventListener('click', toggleBorders);
+clearCanvasButton.addEventListener('click', clearCanvas);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -73,5 +76,16 @@ function toggleBorders() {
   let gridSquares = document.querySelectorAll('.grid-square');
   for (square of gridSquares) {
     square.classList.toggle('border');
+  }
+}
+
+// Clear sketch box
+function clearCanvas() {
+  // Decided to remove the CSS property instead of just calling
+  // clearGrid() and createGrid() for performance reasons - here, only
+  // one loop for all grid squares is required instead of two
+  let gridSquares = document.querySelectorAll('.grid-square');
+  for (square of gridSquares) {
+    square.style.removeProperty('background-color');
   }
 }
