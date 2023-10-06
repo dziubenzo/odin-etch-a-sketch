@@ -15,7 +15,7 @@ function createGrid(size) {
   for (let i = 0; i < divsToCreate; i++) {
     let square = document.createElement('div');
     square.classList.add('grid-square');
-    square.textContent = '1';
+    square.textContent = 'x';
     square.style.height = `${squareHeight}px`;
     square.style.width = `${squareWidth}px`;
     sketchBox.appendChild(square);
