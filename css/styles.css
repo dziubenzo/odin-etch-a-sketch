@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.content {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sketch-box {
+  width: 600px;
+  height: 600px;
+  border: 2px solid blue;
+}
