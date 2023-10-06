@@ -11,6 +11,7 @@ gridSizeField.value = gridSize;
 const gridSizeButton = document.querySelector('.grid-size-button');
 
 const toggleBordersButton = document.querySelector('.toggle-borders-button');
+let toggledBorders = false;
 
 const clearCanvasButton = document.querySelector('.clear-canvas-button');
 
@@ -18,6 +19,7 @@ createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquare);
 gridSizeButton.addEventListener('click', changeGridSize);
 toggleBordersButton.addEventListener('click', toggleBorders);
+toggleBordersButton.addEventListener('click', updateToggledBorders);
 clearCanvasButton.addEventListener('click', clearCanvas);
 
 // Create grid of a given size
@@ -60,6 +62,9 @@ function changeGridSize() {
     clearGrid();
     gridSize = gridSizeField.value;
     createGrid(gridSize);
+    if (toggledBorders) {
+      toggleBorders();
+    }
   }
 }
 
@@ -87,5 +92,14 @@ function clearCanvas() {
   let gridSquares = document.querySelectorAll('.grid-square');
   for (square of gridSquares) {
     square.style.removeProperty('background-color');
+  }
+}
+
+// Update the status of the toggle border button
+function updateToggledBorders() {
+  if (toggledBorders) {
+    toggledBorders = false;
+  } else {
+    toggledBorders = true;
   }
 }
