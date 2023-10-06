@@ -1,9 +1,9 @@
-const SKETCH_BOX_HEIGHT = 600;
-const SKETCH_BOX_WIDTH = 600;
-
 let gridSize = 16;
-
 const sketchBox = document.querySelector('.sketch-box');
+
+// Get sketch box height and width from CSS properties
+const SKETCH_BOX_HEIGHT = sketchBox.computedStyleMap().get('height').value;
+const SKETCH_BOX_WIDTH = sketchBox.computedStyleMap().get('width').value;
 
 // Create grid of a given size
 function createGrid(size) {
