@@ -5,6 +5,9 @@ const sketchBox = document.querySelector('.sketch-box');
 const SKETCH_BOX_HEIGHT = sketchBox.computedStyleMap().get('height').value;
 const SKETCH_BOX_WIDTH = sketchBox.computedStyleMap().get('width').value;
 
+const gridSizeField = document.querySelector('.grid-size-field');
+gridSizeField.value = gridSize;
+
 createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquare);
 
