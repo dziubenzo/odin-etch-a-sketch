@@ -32,7 +32,7 @@ clearCanvasButton.addEventListener('click', clearCanvas);
 rgbModeButton.addEventListener('click', enableRgbMode);
 blackModeButton.addEventListener('click', enableBlackMode);
 blackModeButton.classList.add('pressed');
-darkeningModeButton.addEventListener('click', enableDarkeningMode);
+darkeningModeButton.addEventListener('click', toggleDarkeningMode);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -92,9 +92,11 @@ function darkenSquare(event) {
       rgbValuesArray.push(parseInt(value));
     }
     // Update RGB values
-    event.target.style.backgroundColor = `rgb(${rgbValuesArray[0] - DARKENING_VALUE}, ${
-      rgbValuesArray[1] - DARKENING_VALUE
-    }, ${rgbValuesArray[2] - DARKENING_VALUE})`;
+    event.target.style.backgroundColor = `rgb(${
+      rgbValuesArray[0] - DARKENING_VALUE
+    }, ${rgbValuesArray[1] - DARKENING_VALUE}, ${
+      rgbValuesArray[2] - DARKENING_VALUE
+    })`;
   }
 }
 
@@ -182,12 +184,15 @@ function enableBlackMode() {
   blackModeButton.classList.add('pressed');
 }
 
-// Turn on darkening mode
-function enableDarkeningMode() {
+// Toggle darkening mode on and off with a button
+function toggleDarkeningMode() {
   sketchBox.removeEventListener('mouseover', paintSquareBlack);
   sketchBox.removeEventListener('mouseover', paintSquareRgb);
   sketchBox.addEventListener('mouseover', darkenSquare);
   blackModeButton.classList.remove('pressed');
   rgbModeButton.classList.remove('pressed');
-  darkeningModeButton.classList.add('pressed');
+  if (darkeningModeButton.classList.contains('pressed')) {
+    sketchBox.removeEventListener('mouseover', darkenSquare);
+  }
+  darkeningModeButton.classList.toggle('pressed');
 }
