@@ -85,3 +85,7 @@ button.pressed {
 .b-letter {
   color: blue;
 }
+
+.white-hsl {
+  background-color: hsl(0 0% 90%);
+}

@@ -19,6 +19,8 @@ const rgbModeButton = document.querySelector('.rgb-mode-button');
 
 const blackModeButton = document.querySelector('.black-mode-button');
 
+const darkeningModeButton = document.querySelector('.darkening-mode-button');
+
 createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquareBlack);
 gridSizeButton.addEventListener('click', changeGridSize);
@@ -28,6 +30,7 @@ clearCanvasButton.addEventListener('click', clearCanvas);
 rgbModeButton.addEventListener('click', enableRgbMode);
 blackModeButton.addEventListener('click', enableBlackMode);
 blackModeButton.classList.add('pressed');
+darkeningModeButton.addEventListener('click', enableDarkeningMode);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -69,6 +72,18 @@ function paintSquareRgb(event) {
   }
 }
 
+// Darken square by 10% each interaction
+function darkenSquare(event) {
+  // Skip the sketch box itself
+  if (event.target === sketchBox) {
+    return;
+  }
+  if (!event.target.classList.contains('white-hsl')) {
+    event.target.classList.add('white-hsl');
+  } else {
+    console.log(event.target.style.getPropertyValue('background-color'));
+  }
+}
 // Change grid size if the respective button is clicked
 function changeGridSize() {
   // Validate user input
@@ -147,4 +162,14 @@ function enableBlackMode() {
   sketchBox.addEventListener('mouseover', paintSquareBlack);
   rgbModeButton.classList.remove('pressed');
   blackModeButton.classList.add('pressed');
+}
+
+// Turn on darkening mode
+function enableDarkeningMode() {
+  sketchBox.removeEventListener('mouseover', paintSquareBlack);
+  sketchBox.removeEventListener('mouseover', paintSquareRgb);
+  sketchBox.addEventListener('mouseover', darkenSquare);
+  blackModeButton.classList.remove('pressed');
+  rgbModeButton.classList.remove('pressed');
+  darkeningModeButton.classList.add('pressed');
 }
