@@ -17,13 +17,16 @@ const clearCanvasButton = document.querySelector('.clear-canvas-button');
 
 const rgbModeButton = document.querySelector('.rgb-mode-button');
 
+const blackModeButton = document.querySelector('.black-mode-button');
+
 createGrid(gridSize);
 sketchBox.addEventListener('mouseover', paintSquareBlack);
 gridSizeButton.addEventListener('click', changeGridSize);
 toggleBordersButton.addEventListener('click', toggleBorders);
 toggleBordersButton.addEventListener('click', updateToggledBorders);
 clearCanvasButton.addEventListener('click', clearCanvas);
-rgbModeButton.addEventListener('click', toggleRgbMode);
+rgbModeButton.addEventListener('click', enableRgbMode);
+blackModeButton.addEventListener('click', enableBlackMode);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -129,7 +132,13 @@ function random(min, max) {
 }
 
 // Turn on RGB mode
-function toggleRgbMode() {
+function enableRgbMode() {
   sketchBox.removeEventListener('mouseover', paintSquareBlack);
   sketchBox.addEventListener('mouseover', paintSquareRgb);
+}
+
+// Turn on black mode
+function enableBlackMode() {
+  sketchBox.removeEventListener('mouseover', paintSquareRgb);
+  sketchBox.addEventListener('mouseover', paintSquareBlack);
 }
