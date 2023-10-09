@@ -52,8 +52,10 @@ function createGrid(size) {
   let gridSquares = document.querySelectorAll('.grid-square');
   gridSquares[0].style.borderTopLeftRadius = BORDER_RADIUS;
   gridSquares[size - 1].style.borderTopRightRadius = BORDER_RADIUS;
-  gridSquares[gridSquares.length - size].style.borderBottomLeftRadius = BORDER_RADIUS;
-  gridSquares[gridSquares.length - 1].style.borderBottomRightRadius = BORDER_RADIUS;
+  gridSquares[gridSquares.length - size].style.borderBottomLeftRadius =
+    BORDER_RADIUS;
+  gridSquares[gridSquares.length - 1].style.borderBottomRightRadius =
+    BORDER_RADIUS;
 }
 
 // Paint hovered-over square black
@@ -111,13 +113,15 @@ function darkenSquare(event) {
 function changeGridSize() {
   // Validate user input
   if (
-    gridSizeField.value < 1 ||
-    gridSizeField.value > 100 ||
-    gridSizeField.value === ''
+    parseInt(gridSizeField.value) < 1 ||
+    parseInt(gridSizeField.value) > 100 ||
+    gridSizeField.value === '' ||
+    isNaN(gridSizeField.value)
   ) {
     gridSizeField.value = gridSize;
     return;
   } else {
+    console.log(parseInt(gridSizeField.value));
     clearGrid();
     gridSize = gridSizeField.value;
     createGrid(gridSize);

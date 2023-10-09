@@ -63,9 +63,12 @@ body {
 input {
   height: 36px;
   padding: 0px;
+  background-color: rgb(224, 224, 224);
   text-align: center;
   border-radius: 12px;
   box-sizing: border-box;
+  font-size: 15px;
+  margin-left: 10px;
 }
 
 button {
