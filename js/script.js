@@ -7,6 +7,8 @@ const SKETCH_BOX_WIDTH = sketchBox.computedStyleMap().get('width').value;
 
 const DARKENING_VALUE = 26;
 
+const BORDER_RADIUS = '16px';
+
 const gridSizeField = document.querySelector('.grid-size-field');
 gridSizeField.value = gridSize;
 
@@ -46,6 +48,12 @@ function createGrid(size) {
     square.style.width = `${squareWidth}px`;
     sketchBox.appendChild(square);
   }
+  // Round corners of four corner divs in sketch box
+  let gridSquares = document.querySelectorAll('.grid-square');
+  gridSquares[0].style.borderTopLeftRadius = BORDER_RADIUS;
+  gridSquares[size - 1].style.borderTopRightRadius = BORDER_RADIUS;
+  gridSquares[gridSquares.length - size].style.borderBottomLeftRadius = BORDER_RADIUS;
+  gridSquares[gridSquares.length - 1].style.borderBottomRightRadius = BORDER_RADIUS;
 }
 
 // Paint hovered-over square black

@@ -29,7 +29,7 @@ body {
   background-color: white;
   width: 500px;
   height: 500px;
-  border: 3px solid rgb(189, 189, 189);
+  border: 8px solid rgb(128, 128, 128);
   display: flex;
   flex-wrap: wrap;
   border-radius: 24px;
@@ -55,7 +55,7 @@ body {
   gap: 12px;
   box-sizing: border-box;
   width: 500px;
-  padding: 20px 20px;
+  padding: 10px 20px;
   background-color: rgb(185, 185, 185);
   border-radius: 12px;
 }
@@ -75,6 +75,7 @@ button {
   border: 1px solid rgb(36, 36, 36);
   border-radius: 12px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 button:hover,
