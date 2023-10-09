@@ -19,6 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 12px;
 }
 
 .sketch-box {
@@ -26,7 +27,6 @@ body {
   height: 500px;
   border: 3px solid rgb(189, 189, 189);
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -47,4 +47,5 @@ body {
   gap: 12px;
   padding: 100px 20px;
   background-color: rgb(245, 245, 255);
+  border-radius: 12px;
 }
