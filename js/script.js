@@ -15,12 +15,15 @@ let toggledBorders = false;
 
 const clearCanvasButton = document.querySelector('.clear-canvas-button');
 
+const rgbModeButton = document.querySelector('.rgb-mode-button');
+
 createGrid(gridSize);
-sketchBox.addEventListener('mouseover', paintSquare);
+sketchBox.addEventListener('mouseover', paintSquareBlack);
 gridSizeButton.addEventListener('click', changeGridSize);
 toggleBordersButton.addEventListener('click', toggleBorders);
 toggleBordersButton.addEventListener('click', updateToggledBorders);
 clearCanvasButton.addEventListener('click', clearCanvas);
+rgbModeButton.addEventListener('click', toggleRgbMode);
 
 // Create grid of a given size
 function createGrid(size) {
@@ -38,13 +41,27 @@ function createGrid(size) {
   }
 }
 
-// Paint hovered-over square
-function paintSquare(event) {
+// Paint hovered-over square black
+function paintSquareBlack(event) {
   // Skip the sketch box itself
   if (event.target === sketchBox) {
     return;
   } else {
     event.target.style.backgroundColor = 'black';
+  }
+}
+
+// Paint hovered-over square random colour
+function paintSquareRgb(event) {
+  // Skip the sketch box itself
+  if (event.target === sketchBox) {
+    return;
+  } else {
+    event.target.style.backgroundColor = `rgb(
+      ${random(0, 255)},
+      ${random(0, 255)},
+      ${random(0, 255)}
+    )`;
   }
 }
 
@@ -104,9 +121,15 @@ function updateToggledBorders() {
   }
 }
 
-// Get random integer between min and max (both inclusive)
+// Get random integer between min and max (both inclusive) (helper function)
 function random(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Turn on RGB mode
+function toggleRgbMode() {
+  sketchBox.removeEventListener('mouseover', paintSquareBlack);
+  sketchBox.addEventListener('mouseover', paintSquareRgb);
 }
