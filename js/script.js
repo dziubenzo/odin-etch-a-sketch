@@ -24,14 +24,12 @@ const blackModeButton = document.querySelector('.black-mode-button');
 const darkeningModeButton = document.querySelector('.darkening-mode-button');
 
 createGrid(gridSize);
-sketchBox.addEventListener('mouseover', paintSquareBlack);
 gridSizeButton.addEventListener('click', changeGridSize);
 toggleBordersButton.addEventListener('click', toggleBorders);
 toggleBordersButton.addEventListener('click', updateToggledBorders);
 clearCanvasButton.addEventListener('click', clearCanvas);
 rgbModeButton.addEventListener('click', enableRgbMode);
 blackModeButton.addEventListener('click', enableBlackMode);
-blackModeButton.classList.add('pressed');
 darkeningModeButton.addEventListener('click', toggleDarkeningMode);
 
 // Create grid of a given size
@@ -80,10 +78,11 @@ function darkenSquare(event) {
   if (event.target === sketchBox) {
     return;
   }
+  // Add background colour if not set
   if (!event.target.style.backgroundColor) {
     event.target.style.backgroundColor = 'rgb(229, 229, 229)';
   } else {
-    // Modify returned background-color string to get an array of RGB values
+    // Modify background colour string to get an array of RGB values
     let bgColorString = event.target.style.backgroundColor;
     let rgbValues = bgColorString.slice(4);
     let rawValuesArray = rgbValues.split(',');
