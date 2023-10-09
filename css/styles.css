@@ -66,13 +66,10 @@ button {
   color: rgb(36, 36, 36);
   border: 1px solid rgb(36, 36, 36);
   border-radius: 12px;
+  cursor: pointer;
 }
 
 button:hover,
 button.pressed {
   background-color: rgb(163, 163, 163);
-}
-
-button.pressed:hover {
-  background-color: rgb(204, 204, 204);
 }

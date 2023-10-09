@@ -27,6 +27,7 @@ toggleBordersButton.addEventListener('click', updateToggledBorders);
 clearCanvasButton.addEventListener('click', clearCanvas);
 rgbModeButton.addEventListener('click', enableRgbMode);
 blackModeButton.addEventListener('click', enableBlackMode);
+blackModeButton.classList.add('pressed');
 
 // Create grid of a given size
 function createGrid(size) {
@@ -136,10 +137,14 @@ function random(min, max) {
 function enableRgbMode() {
   sketchBox.removeEventListener('mouseover', paintSquareBlack);
   sketchBox.addEventListener('mouseover', paintSquareRgb);
+  blackModeButton.classList.remove('pressed');
+  rgbModeButton.classList.add('pressed');
 }
 
 // Turn on black mode
 function enableBlackMode() {
   sketchBox.removeEventListener('mouseover', paintSquareRgb);
   sketchBox.addEventListener('mouseover', paintSquareBlack);
+  rgbModeButton.classList.remove('pressed');
+  blackModeButton.classList.add('pressed');
 }
