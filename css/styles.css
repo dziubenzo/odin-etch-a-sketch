@@ -73,3 +73,15 @@ button:hover,
 button.pressed {
   background-color: rgb(163, 163, 163);
 }
+
+.r-letter {
+  color: red;
+}
+
+.g-letter {
+  color: green;
+}
+
+.b-letter {
+  color: blue;
+}
