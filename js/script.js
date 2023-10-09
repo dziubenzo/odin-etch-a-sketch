@@ -122,6 +122,7 @@ function updateToggledBorders() {
   } else {
     toggledBorders = true;
   }
+  toggleBordersButton.classList.toggle('pressed');
 }
 
 // Get random integer between min and max (both inclusive) (helper function)
