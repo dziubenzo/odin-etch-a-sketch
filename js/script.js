@@ -5,6 +5,8 @@ const sketchBox = document.querySelector('.sketch-box');
 const SKETCH_BOX_HEIGHT = sketchBox.computedStyleMap().get('height').value;
 const SKETCH_BOX_WIDTH = sketchBox.computedStyleMap().get('width').value;
 
+const DARKENING_VALUE = 26;
+
 const gridSizeField = document.querySelector('.grid-size-field');
 gridSizeField.value = gridSize;
 
@@ -72,18 +74,30 @@ function paintSquareRgb(event) {
   }
 }
 
-// Darken square by 10% each interaction
+// Darken square by approx. 10% each interaction
 function darkenSquare(event) {
   // Skip the sketch box itself
   if (event.target === sketchBox) {
     return;
   }
-  if (!event.target.classList.contains('white-hsl')) {
-    event.target.classList.add('white-hsl');
+  if (!event.target.style.backgroundColor) {
+    event.target.style.backgroundColor = 'rgb(229, 229, 229)';
   } else {
-    console.log(event.target.style.getPropertyValue('background-color'));
+    // Modify returned background-color string to get an array of RGB values
+    let bgColorString = event.target.style.backgroundColor;
+    let rgbValues = bgColorString.slice(4);
+    let rawValuesArray = rgbValues.split(',');
+    let rgbValuesArray = [];
+    for (value of rawValuesArray) {
+      rgbValuesArray.push(parseInt(value));
+    }
+    // Update RGB values
+    event.target.style.backgroundColor = `rgb(${rgbValuesArray[0] - DARKENING_VALUE}, ${
+      rgbValuesArray[1] - DARKENING_VALUE
+    }, ${rgbValuesArray[2] - DARKENING_VALUE})`;
   }
 }
+
 // Change grid size if the respective button is clicked
 function changeGridSize() {
   // Validate user input
@@ -151,16 +165,20 @@ function random(min, max) {
 // Turn on RGB mode
 function enableRgbMode() {
   sketchBox.removeEventListener('mouseover', paintSquareBlack);
+  sketchBox.removeEventListener('mouseover', darkenSquare);
   sketchBox.addEventListener('mouseover', paintSquareRgb);
   blackModeButton.classList.remove('pressed');
+  darkeningModeButton.classList.remove('pressed');
   rgbModeButton.classList.add('pressed');
 }
 
 // Turn on black mode
 function enableBlackMode() {
   sketchBox.removeEventListener('mouseover', paintSquareRgb);
+  sketchBox.removeEventListener('mouseover', darkenSquare);
   sketchBox.addEventListener('mouseover', paintSquareBlack);
   rgbModeButton.classList.remove('pressed');
+  darkeningModeButton.classList.remove('pressed');
   blackModeButton.classList.add('pressed');
 }
 
